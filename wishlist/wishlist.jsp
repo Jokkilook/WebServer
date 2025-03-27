@@ -2,7 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../SQLconstants.jsp" %>
 <div id="wishlist">
-<%
+<%	
+	//찜 목록을 출력하는 JSP
+	
+	//세션에 저장된 유저 닉네임과 유저넘버를 가져옴.
 	String user = (String)session.getAttribute("user");
 	String usernum = (String)session.getAttribute("usernum");
 	

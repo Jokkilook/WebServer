@@ -14,21 +14,24 @@
 		Class.forName( jdbc_driver ); 
 		Connection con = DriverManager.getConnection( mySQL_database, mySQL_id, mySQL_password ); 
 	
-		// MySQL 책 추가 실행 	
+		// 유저 정보를 가져오는 SQL
 		String query = "select usernum,name from users where id=? and pw=?"; 
 		query = new String( query.getBytes("utf-8") );
 		PreparedStatement pstmt = con.prepareStatement(query);
 		pstmt.setString(1, id);
 		pstmt.setString(2, pw);
-		
 		ResultSet rs = pstmt.executeQuery();
+
+		//아이디 비번이 일치하는 유저가 있으면 세션에 유저 닉네임과 유저넘버 저장
 		while(rs.next()){
 			String name = rs.getString("name");
 			String usernum = rs.getString("usernum");
 			if ( name!=null )
-			{
+			{	
+				//세션에 정보 저장
 				session.setAttribute("user", name);
 				session.setAttribute("usernum", usernum);
+				//완료 후 main으로 되돌아가기
 				response.sendRedirect("../main.jsp");
 %>
 <%			
@@ -42,8 +45,6 @@
 			</script>
 			
 <%
-				//System.out.println("로그인 실패요");
-				//response.sendRedirect("main.jsp");
 			}
 		}
 %>
@@ -52,8 +53,6 @@
 				window.location.href = "../main.jsp";
 		</script>
 <%
-	
-		//response.sendRedirect("main.jsp");
 		// MySQL 드라이버 연결 해제
 		pstmt.close();
 		con.close();

@@ -8,6 +8,8 @@
 </head>
 <body>
 <!-- users 폴더의 loginSection.jsp를 불러와 로그인, 로그아웃, 회원가입 기능 출력 -->
+<!-- wishlist 폴더의 wishlist.jsp를 불러와 찜 목록 추가 제거 기능 출력 -->
+<!-- gameList 폴더의 gameList.jsp를 불러와 게임 리스트 기능 출력 -->
 <%
 	request.getRequestDispatcher("user/loginSection.jsp").include(request, response);
 	request.getRequestDispatcher("wishlist/wishlist.jsp").include(request, response);

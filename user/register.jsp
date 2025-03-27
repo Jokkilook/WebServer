@@ -2,27 +2,26 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../SQLconstants.jsp" %>
 <%
+	//이전 화면에서 받은 정보를 저장. (id, pw, name)
 	request.setCharacterEncoding("UTF-8");
 	String id = request.getParameter("id");
 	String pw = request.getParameter("pw");
 	String name = request.getParameter("name");
 	String message = null;
 	
-	System.out.println(id+pw+name);
 	try
 	{
 		// MySQL 드라이버 연결 
 		Class.forName( jdbc_driver ); 
 		Connection con = DriverManager.getConnection( mySQL_database, mySQL_id, mySQL_password ); 
 	
-		// MySQL 책 추가 실행 	
+		// 유저 정보를 유저 테이블에 추가	
 		String query = "insert into users(id, pw, name) values (?,?,?);"; 
 		query = new String( query.getBytes("utf-8") );
 		PreparedStatement pstmt = con.prepareStatement(query);
 		pstmt.setString(1, id);
 		pstmt.setString(2, pw);
 		pstmt.setString(3, name);
-		System.out.println(pstmt);
 
 		if ( pstmt.executeUpdate() > 0 )
 		{

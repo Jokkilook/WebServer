@@ -3,7 +3,8 @@
 <%@ include file="../SQLconstants.jsp" %>
 <%
 	//찜 목록에 아이템 삭제하는 JSP
-	
+
+	//세션에 저장된 유저 닉네임과 유저넘버를 가져옴.
 	String unum = request.getParameter("usernum");
 	String gId = request.getParameter("gameid");
 	
@@ -12,7 +13,7 @@
 		Class.forName( jdbc_driver ); 
 		Connection con = DriverManager.getConnection( mySQL_database, mySQL_id, mySQL_password ); 
 	
-		// MySQL 책 추가 실행 	
+		// 찜 목록 테이블에 데이터를 지우는 SQL 	
 		String query = "delete from wishlist where usernum=? and game_id=?"; 
 		query = new String( query.getBytes("utf-8") );
 		PreparedStatement pstmt = con.prepareStatement(query);
@@ -20,6 +21,8 @@
 		pstmt.setString(2, gId);
 		System.out.println(pstmt);
 		pstmt.executeUpdate();
+
+		//작업이 끝나면 main으로 되돌아가기
 		response.sendRedirect("../main.jsp");
 		
 	}catch(SQLException e){

@@ -12,8 +12,9 @@
     }
 </script>
 <body>
-<div id="loginSectiono">
-<%
+<div id="loginSection">
+<%	
+	//세션에 저장된 유저 정보가 없으면 로그인 창 표시
 	if(session.getAttribute("user")==null){
 %>
 		<!-- 로그인 섹션 -->
@@ -34,6 +35,7 @@
 		</form>
 <%
 	} else {
+		//세션에 저장된 유저 정보가 있으면 유저 환영 메시지 표시
 		String user = (String)session.getAttribute("user");
 %>
 		<%=user %>님 환영합니다!<br>
