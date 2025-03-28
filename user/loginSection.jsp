@@ -18,6 +18,7 @@
 	if(session.getAttribute("user")==null){
 %>
 		<!-- 로그인 섹션 -->
+		<!-- 가입 버튼을 누르면 login.jsp 로 데이터 전송 -->
 		<form id="login" method="post" action="./user/login.jsp">
 			아이디 <input type="text" name="id" required><br>
 			비밀번호 <input type="password" name="pw" required><br>
@@ -26,6 +27,7 @@
 		</form>
 		
 		<!-- 회원가입 섹션 -->
+		<!-- 가입 버튼을 누르면 register.jsp 로 데이터 전송 -->
 		<form id="register" method="post" action="./user/register.jsp" hidden="true">
 			닉네임 <input type="text" name="name" required><br>
 			아이디 <input type="text" name="id" required><br>
@@ -39,8 +41,9 @@
 		String user = (String)session.getAttribute("user");
 %>
 		<%=user %>님 환영합니다!<br>
+		<!-- 가입 버튼을 누르면 logout.jsp 실행 -->
 		<button onclick="location.href='./user/logout.jsp'">로그아웃</button>
 <%
 	}
 %>
-<div>
+</div>
