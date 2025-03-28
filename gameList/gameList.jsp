@@ -38,10 +38,10 @@
 			int like = rs.getInt("good");
 			int dislike = rs.getInt("bad");
 			int playtime = rs.getInt("average_playtime");
-			float price = rs.getFloat("price");
+			float price = rs.getFloat("price");		
 			
 			//유저가 로그인 중이고 [ 저장된 찜 목록이 null이 아니고 && 그 배열에 해당 게임이 있다면 ] 버튼 Disable
-			String disabled = (usernum!=null)||!(wishlist!=null&&(wishlist.contains(gameId))) ? "" : "disabled";
+			String disabled = (usernum!=null)&&!(wishlist!=null&&wishlist.contains(gameId)) ? "" : "disabled";
 						
 %>
 			<!-- 아이템을 누르면 해당 게임의 스팀 상점 페이지로 이동 -->
