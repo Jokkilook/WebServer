@@ -5,10 +5,14 @@
 	String usernum = (String)session.getAttribute("usernum");
 	List<String> wishlist = (List<String>) session.getAttribute("wishlist");
 	String message = "";
+	String search = "";
     String sortColumn = "game_id";
     String sortOrder = "ASC";
     
-    // 정렬 기준이 넘어오면 변경
+    // 검색, 정렬 기준이 넘어오면 변경
+    if (request.getParameter("search") != null) {
+    	search = request.getParameter("search");
+    }
     if (request.getParameter("sort") != null) {
         sortColumn = request.getParameter("sort");
     }
@@ -30,10 +34,11 @@
 		Connection con = DriverManager.getConnection( mySQL_database, mySQL_id, mySQL_password ); 
 	
 		// 게임 테이블에 데이터 목록을 반환
-		String query = "select * from game order by "+sortColumn+" "+sortOrder+";"; 
+		String query = "select * from game where game_name like ? order by "+sortColumn+" "+sortOrder+";"; 
 		//String query = "select * from game limit ? offset ?;"; 
 		query = new String( query.getBytes("utf-8") );
 		PreparedStatement pstmt = con.prepareStatement(query);
+		pstmt.setString(1,"%" + search + "%");
 		System.out.println(pstmt.toString());
 		ResultSet rs = pstmt.executeQuery();
 		
