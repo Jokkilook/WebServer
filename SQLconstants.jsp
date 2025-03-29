@@ -1,7 +1,7 @@
 <%
 	//MySQL 기본 설정
 	// MySQL ID : MySQL 설치시 아이디 ex) root, test, ...
-	final String mySQL_id = "root"; 	
+	final String mySQL_id = ""; 	
 
 	// MySQL Password	
 	final String mySQL_password = "";

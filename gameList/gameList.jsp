@@ -5,6 +5,16 @@
 	String usernum = (String)session.getAttribute("usernum");
 	List<String> wishlist = (List<String>) session.getAttribute("wishlist");
 	String message = "";
+    String sortColumn = "game_id";
+    String sortOrder = "ASC";
+    
+    // 정렬 기준이 넘어오면 변경
+    if (request.getParameter("sort") != null) {
+        sortColumn = request.getParameter("sort");
+    }
+    if (request.getParameter("order") != null) {
+        sortOrder = request.getParameter("order");
+    }
 	
 /* 	int currentPage = 1;
 	int itemPerPage = 20;
@@ -12,21 +22,19 @@
 		currentPage = Integer.parseInt(request.getParameter("page"));
 	}
 	int offset = (currentPage-1)*itemPerPage; */
-	
+		
 	try
 	{
-		
 		// MySQL 드라이버 연결 
 		Class.forName( jdbc_driver ); 
 		Connection con = DriverManager.getConnection( mySQL_database, mySQL_id, mySQL_password ); 
 	
 		// 게임 테이블에 데이터 목록을 반환
-		String query = "select * from game;"; 
+		String query = "select * from game order by "+sortColumn+" "+sortOrder+";"; 
 		//String query = "select * from game limit ? offset ?;"; 
 		query = new String( query.getBytes("utf-8") );
 		PreparedStatement pstmt = con.prepareStatement(query);
-		//pstmt.setInt(1, itemPerPage);
-		//pstmt.setInt(2, offset);
+		System.out.println(pstmt.toString());
 		ResultSet rs = pstmt.executeQuery();
 		
 		while(rs.next()){
