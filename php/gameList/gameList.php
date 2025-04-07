@@ -1,3 +1,5 @@
+<!-- main.php에서 호출  -->
+
 <?php
 // 수정 완료
 session_start(); // 세션 시작

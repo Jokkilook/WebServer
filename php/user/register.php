@@ -1,3 +1,5 @@
+<!-- loginSection.php에서 호출  -->
+
 <?php
 session_start(); // 세션 시작
 
@@ -5,18 +7,20 @@ session_start(); // 세션 시작
 //main에서 include/require 될 때. 상대경로시 경로가 꼬일 위험존재.
 require(__DIR__ . "/../SQLconstants.php"); // DB 정보 포함 파일
 
-// POST 방식으로 전달된 데이터 받기
+// 이전 페이지 <form>의 POST로, 전달받은 데이터
 $id = isset($_POST['id']) ? $_POST['id'] : null;
 $pw = isset($_POST['pw']) ? $_POST['pw'] : null;
 $name = isset($_POST['name']) ? $_POST['name'] : null;
 $message = null;
 
-try {
+try
+{
     // MySQL 연결하기
     $conn = new mysqli($mySQL_host, $mySQL_id, $mySQL_password, $mySQL_database);
 
     // 연결 오류 확인
-    if ($conn->connect_error) {
+    if ($conn->connect_error)
+    {
         die("DB 연결 오류: " . $conn->connect_error);
     }
 
@@ -37,7 +41,10 @@ try {
     // 연결 해제
     $stmt->close();
     $conn->close();
-} catch (Exception $e) {
+}
+
+catch (Exception $e)
+{
     $message = $e->getMessage();
     echo "오류 발생: " . htmlspecialchars($message);
 }

@@ -1,3 +1,5 @@
+<!-- wishlist.php에서 호출 -->
+
 <?php
 session_start(); // 세션 시작
 
