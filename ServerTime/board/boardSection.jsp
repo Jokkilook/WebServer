@@ -24,9 +24,9 @@
 			Timestamp time = rs.getTimestamp("time");
 	%>
 		<div id="postItem" >
-			<%=writer_ip %>
-			<%=content %>
-			<%=time %>
+			<div class="post-ip"><%= writer_ip %></div>
+	    	<div class="post-content"><%= content %></div>
+	    	<div class="post-time"><%= time %></div>
 		</div>
 	<%
 		}

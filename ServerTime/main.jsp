@@ -3,10 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/ServerTime/style.css">
+<script src="https://kit.fontawesome.com/0c8a563ee1.js" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <title>서버 시간 디스플레이 사이트</title>
 </head>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/ServerTime/style.css">
 <%
 	request.setCharacterEncoding("UTF-8");
 	String contextPath = request.getContextPath();
@@ -24,6 +25,8 @@
         } else {
             normalizedUrl = detectedUrl;
         }
+    } else {
+    	detectedUrl = "";
     }
 	
     String targetUrl = !(normalizedUrl.isEmpty()) ? normalizedUrl : "https://www.naver.com";
@@ -108,7 +111,7 @@
             xhr.open("GET", "board/boardSection.jsp", true);
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    document.getElementById("board").innerHTML = xhr.responseText;
+                    document.getElementById("boardlist").innerHTML = xhr.responseText;
                 }
             };
             xhr.send();
@@ -120,38 +123,56 @@
         window.onload=function() { loadList('') }
    </script>
 <body>
+<div id="layout">
 
-<!-- 시간 출력 구역 -->
-<div id="time">
-	<form name="urlForm" action="<%= contextPath %>/ServerTime/main.jsp" method="get">
-		조회 사이트 URL
-		<input type="text" name="url" value=<%= detectedUrl %> >
-		<input type="submit" value="조회">
-	</form>
-	<%if(!(detectedUrl==null)){%>
-	<%= detectedUrl %>의 서버 시간
-	<%} %>
-	<div id="serverTime"></div>
-</div>
+	<div id="left">
+		<!-- 시간 출력 구역 -->	
+		<div id="time">
+			<form name="urlForm" action="<%= contextPath %>/ServerTime/main.jsp" method="get">
+				조회 사이트 URL
+				<input type="text" name="url" value=<%= detectedUrl %> >
+				<Button>조회</Button>
+			</form>
+			<%if(!(detectedUrl=="")){%>
+			<%= detectedUrl %>의 서버 시간
+			<%} %>
+			<div id="serverTime"></div>
+		</div>
+		
+		<!-- 게시판 구역 -->
+		<div id="board">
+	
+			<form name="addForm" method="post" onsubmit="return postContent()">
+				<input type="text" name="content" id="content" required >
+				<button onclick="submit">게시</button>
+				<button type="button" onclick="loadBoard()">
+				<i id="icon" class="fa-solid fa-rotate-right fa"></i>
+				</button>
+			</form>
 
-<!-- 게시판 구역 -->
-<div id="board">
-	<form name="addForm" method="post">
-		<input type="text" name="content" id="content" >
-		<button onclick="postContent()">게시</button>
-	</form>
-	<jsp:include page="board/boardSection.jsp" />
-</div>
-
-<!-- 검색 구역 -->
-<div id="search">
-	<form name="search" action="" method="post">
-		<input type="text" id="searchInput" onkeydown="if(event.key === 'Enter') { event.preventDefault(); searchSchool(); }" >
-		<button type="button" onclick="searchSchool()">검색</button>
-	</form>
-	<div id="list">
-	<jsp:include page="search/searchSection.jsp" />
+			<div id="boardlist" class="boardlist">
+			<jsp:include page="board/boardSection.jsp" />
+			</div>
+		</div>
+		
 	</div>
+	
+	<!-- 검색 구역 -->
+	<div id="search">
+		<form name="search" action="" method="post">
+			<input type="text" id="searchInput" required onkeydown="if(event.key === 'Enter') { event.preventDefault(); searchSchool(); }" >
+			<button type="button" onclick="searchSchool()">검색</button>
+		</form>
+		<div id="list" class="list">
+		<jsp:include page="search/searchSection.jsp" />
+		</div>
+	</div>
+	
 </div>
+
+<div id="footer">
+2025 웹서버개발 202111085 유상현 / 202111096 조준환 / 202315081 조성윤
+</div>
+
 </body>
 </html>

@@ -1,8 +1,6 @@
 <%@ page language="java" import="java.sql.*, javax.sql.DataSource, java.util.*" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../SQLconstants.jsp" %>
-<div id="search">
-
 <%
 	String contextPath = request.getContextPath();
 	String search = request.getParameter("search");
@@ -16,7 +14,7 @@
 		Connection con = DriverManager.getConnection( mySQL_database, mySQL_id, mySQL_password ); 
 	
 		// 학교 테이블에 데이터 목록을 반환
-		String query = "select * from school where name like ?;"; 
+		String query = "select * from school where name like ? order by name asc;"; 
 		query = new String( query.getBytes("utf-8") );
 		PreparedStatement pstmt = con.prepareStatement(query);
 		pstmt.setString(1,"%" + search + "%");
@@ -51,5 +49,3 @@
 			message = e.getMessage();
 	}   
 %>
-
-</div>
