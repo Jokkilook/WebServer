@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="./style.css">
 <script src="https://kit.fontawesome.com/0c8a563ee1.js" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <title>서버 시간 디스플레이 사이트</title>
