@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/ServerTime/style.css">
+<link rel="stylesheet" href="../style.css">
 <script src="https://kit.fontawesome.com/0c8a563ee1.js" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <title>서버 시간 디스플레이 사이트</title>
@@ -128,7 +128,7 @@
 	<div id="left">
 		<!-- 시간 출력 구역 -->	
 		<div id="time">
-			<form name="urlForm" action="<%= contextPath %>/ServerTime/main.jsp" method="get">
+			<form name="urlForm" action="../main.jsp" method="get">
 				조회 사이트 URL
 				<input type="text" name="url" value=<%= detectedUrl %> >
 				<Button>조회</Button>
