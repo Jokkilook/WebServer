@@ -26,7 +26,7 @@
 			String url = rs.getString("url");
 			schoolList.add(name);		
 	%>
-		<div id="listItem" onclick="location.href='../main.jsp?url=<%=url %>'">
+		<div id="listItem" onclick="location.href='./main.jsp?url=<%=url %>'">
 			<%=name %>
 		</div>
 	<%

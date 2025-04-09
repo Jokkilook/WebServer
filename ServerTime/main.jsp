@@ -128,7 +128,7 @@
 	<div id="left">
 		<!-- 시간 출력 구역 -->	
 		<div id="time">
-			<form name="urlForm" action="../main.jsp" method="get">
+			<form name="urlForm" action="./main.jsp" method="get">
 				조회 사이트 URL
 				<input type="text" name="url" value=<%= detectedUrl %> >
 				<Button>조회</Button>
