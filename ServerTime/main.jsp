@@ -125,7 +125,6 @@
 <body>
 <div id="layout">
 
-	<div id="left">
 		<!-- 시간 출력 구역 -->	
 		<div id="time">
 			<form name="urlForm" action="./main.jsp" method="get">
@@ -139,33 +138,42 @@
 			<div id="serverTime"></div>
 		</div>
 		
-		<!-- 게시판 구역 -->
-		<div id="board">
-	
-			<form name="addForm" method="post" onsubmit="return postContent()">
-				<input type="text" name="content" id="content" required >
-				<button onclick="submit">게시</button>
-				<button type="button" onclick="loadBoard()">
-				<i id="icon" class="fa-solid fa-rotate-right fa"></i>
-				</button>
+		<div id="down">
+			
+			<div class="tab">
+				<ul class="tablist">
+					<li>게시판</li>
+					<li>반응 속도 테스트</li>
+				</ul>
+				
+				<!-- 게시판 구역 -->
+				<div id="board">
+			
+					<form name="addForm" method="post" onsubmit="return postContent()">
+						<input type="text" name="content" id="content" required >
+						<button onclick="submit">게시</button>
+						<button type="button" onclick="loadBoard()">
+						<i id="icon" class="fa-solid fa-rotate-right fa"></i>
+						</button>
+					</form>
+		
+					<div id="boardlist" class="boardlist">
+					<jsp:include page="board/boardSection.jsp" />
+					</div>
+				</div>
+			</div>
+		
+		<!-- 검색 구역 -->
+		<div id="search">
+			<form name="search" action="" method="post">
+				<input type="text" id="searchInput" required onkeydown="if(event.key === 'Enter') { event.preventDefault(); searchSchool(); }" >
+				<button type="button" onclick="searchSchool()">검색</button>
 			</form>
-
-			<div id="boardlist" class="boardlist">
-			<jsp:include page="board/boardSection.jsp" />
+			<div id="list" class="list">
+				<jsp:include page="search/searchSection.jsp" />
 			</div>
 		</div>
-		
-	</div>
 	
-	<!-- 검색 구역 -->
-	<div id="search">
-		<form name="search" action="" method="post">
-			<input type="text" id="searchInput" required onkeydown="if(event.key === 'Enter') { event.preventDefault(); searchSchool(); }" >
-			<button type="button" onclick="searchSchool()">검색</button>
-		</form>
-		<div id="list" class="list">
-		<jsp:include page="search/searchSection.jsp" />
-		</div>
 	</div>
 	
 </div>

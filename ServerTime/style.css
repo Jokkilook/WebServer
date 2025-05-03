@@ -3,14 +3,14 @@
 }
 
 #footer {
-	color: #fff;
+	color: #000;
 }
 
 body {
     display: flex;
     margin: 0;
     padding: 0;
-    background-color: #000;
+    background-color: #F9F9F9;
     align-items: center;
     width: 100%;
     height: 100%;
@@ -19,44 +19,59 @@ body {
 }
 
 #layout {
-	display: flex;
 	padding: 20px;
 	gap: 20px;
 	width: 50vw;
-	height: 95vh;
-	min-width: 960px;
-	max-width: 960px;
+	min-width: 1000px;
+	max-width: 1000px;
 	margin: 0 auto; /* 가운데 정렬 */
 }
 
-#left {
+#down {
     display: flex;
-    width: 80%;
     max-height: 70%;
-    flex-direction: column;      /* 세로 배치 */
     gap: 20px;
 }
 
 /* 왼쪽 영역 - 시간 + 게시판 */
-#time, #board {
+#time {
     background-color: #fff;
     padding: 20px;
-    margin-bottom: 8px;
-    border-radius: 12px;
+    margin-bottom: 16px;
+    /* border-radius: 12px; */
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
+.tab {
+    width: 70%;
+}
+
+ul,li {
+	list-style:none;
+	margin:0; 
+	padding:0;
+}
+
+.tablist li{
+	display: inline-block;  
+	height:46px; 
+	text-align:center; 
+	border-right:1px solid #ddd;
+}
+
 #board {
-	height: 77vh;
+    background-color: #fff;
+    padding: 20px;
+    /* border-radius: 12px; */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
 /* 오른쪽 영역 - 검색 */
 #search {
     background-color: #ffffff;
     width: 30%;
-    height: 89.2vh;
     padding: 20px;
-    border-radius: 12px;
+    /* border-radius: 12px; */
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
@@ -75,7 +90,7 @@ input[type="text"] {
     width: 90%;
     font-size: 15px;
     border: 2px solid #888;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     flex: 1;
     transition: border-color 0.3s ease;
 }
@@ -94,7 +109,7 @@ button, Button {
     color: white;
     font-size: 15px;
     border: none;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -117,7 +132,7 @@ button:hover, Button:hover {
     align-items: center;
     text-align: center;
     margin-top: 16px;
-	border-radius: 16px;
+	/* border-radius: 16px; */
     background-color: #000000;
     color: #FFFFFF;
     padding: 16px;
@@ -131,7 +146,7 @@ button:hover, Button:hover {
     padding: 10px 16px;
     background-color: #fff;
     border: 2px solid #ccc;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     margin-bottom: 16px;
     font-size: 15px;
     line-height: 1.4;
@@ -171,7 +186,7 @@ button:hover, Button:hover {
 
 .list {
 	width: 100%;
-	height: 81vh;
+	height: 60vh;
 	overflow: auto;	
 }
 
@@ -187,7 +202,7 @@ button:hover, Button:hover {
     padding: 12px 16px;
     margin-top: 10px;
     border: 2px solid #000;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     background-color: #fff;
     cursor: pointer;
     transition: background-color 0.2s ease;
