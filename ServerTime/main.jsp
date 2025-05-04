@@ -355,7 +355,7 @@
         
         //알람 시간을 설정하고 타이머 시작
         function startAlarmTimer() {
-        
+
         //알람음 불러오기
       	const alarmSound = new Audio('alarm.mp3');
 
@@ -369,8 +369,8 @@
 
             // 설정한 시간이 되기 4초 전에 알림
             if (isOn && minutes === alarmTime-1 && seconds === 56) { // 4초 전
-       		  alarmSound.currentTime = 0; // 알람 시작 시점 초기화
-              alarmSound.play(); // 알람 소리 재생
+            	alarmSound.currentTime = 0; // 알람 시작 시점 초기화
+            	alarmSound.play(); // 알람 소리 재생
             }
 
           }, 1); // 1ms초마다 확인
@@ -382,6 +382,10 @@
 	      	if (typeof alarmTimer !== 'undefined') {
 	      	  clearInterval(alarmTimer);
 	      	}
+        }
+        
+        if(isOn) {
+        	startAlarmTimer();
         }
 </script>
 </html>
