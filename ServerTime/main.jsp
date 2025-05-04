@@ -214,7 +214,7 @@
             };
             xhr.send();
         }
-
+		
         startUpdatingClock();
         window.onload = loadBoard;
         window.onload=function() { loadList('') }
@@ -226,14 +226,14 @@
               "게시판": document.getElementById("board"),
               "반응 속도 테스트": document.getElementById("speedtest")
             };
-
+			
             function hideAll() {
               for (let key in contents) {
                 contents[key].style.display = "none";
               }
               tabs.forEach(tab => tab.classList.remove("active"));
             }
-
+			
             tabs.forEach(tab => {
               tab.style.cursor = "pointer"; // 클릭 가능하게
               tab.addEventListener("click", function () {
@@ -254,10 +254,11 @@
         let isReady = false;        // "기다리세요..." 상태인지 여부
         let startTime = 0;
         let timeoutId = null;
-
+		
+        //반응 속도 테스트 박스
         box.addEventListener('click', function () {
           if (isWaiting) {
-            // 초록색 상태일 때 클릭 → 반응 시간 측정
+            // 초록색 상태일 때 클릭 : 반응 시간 측정
             const endTime = Date.now();
             const reactionTime = endTime - startTime;
             box.textContent = "현재 기록 : " + reactionTime + "ms";
@@ -270,8 +271,9 @@
             box.textContent = '준비하세요...';
             box.style.backgroundColor = 'darkgray';
             isReady = true;
-
-            const delay = Math.floor(Math.random() * 4000) + 1000; // 1~5초
+			
+            // 랜덤 1~5초
+            const delay = Math.floor(Math.random() * 4000) + 1000;
             timeoutId = setTimeout(() => {
               startTime = Date.now();
               box.textContent = '누르세요!';
@@ -287,20 +289,61 @@
             isWaiting = false;
           }
         });
-
+		
+        //테스트 기록 추가
         function addResult(time) {
           const li = document.createElement('li');
           li.textContent = time + "ms";
           resultList.prepend(li);
         } 
         
+     	// 쿠키 저장 (이름, 값, 유효기간: 일 단위)
+        function setCookie(name, value, days) {
+          let expires = "";
+          if (days) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+          }
+          document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
+        }
+                
+        //쿠키 불러오기
+        function getCookie(name) {
+        	  const cookies = document.cookie.split(';');
+        	  for (let c of cookies) {
+        	    const [k, v] = c.trim().split('=');
+        	    if (k === name) return decodeURIComponent(v);
+        	  }
+        	  return null;
+        }
+        
+        //드롭박스 분 초기 설정
+        window.addEventListener('DOMContentLoaded', function () {
+        	  const savedMinute = getCookie("alarmMinute") || 0;
+        	  if (savedMinute !== null) {
+        	    const select = document.getElementById("minuteSelect");
+        	    select.value = savedMinute;
+        	  }
+        	});
+        
+        //드롭박스 값 쿠키 저장
+        document.getElementById("minuteSelect").addEventListener("change", function () {
+        	  const selectedValue = this.value;
+        	  setCookie("alarmMinute", selectedValue, 1);
+        });
+        
         //토글 스위치 상태 확인
         let toggleSwitch = document.getElementById('toggleSwitch');
         let toggleHandle = toggleSwitch.querySelector('.switch-handle');
-        let isOn = false;
-
+        let isOn = getCookie("isOn") === "true" || false;
+        toggleSwitch.classList.toggle("on", isOn);
+		
+        //알람 on/off 토글 버튼
         toggleSwitch.addEventListener("click", () => {
           isOn = !isOn;
+          setCookie("isOn",isOn, 1);
+          
           toggleSwitch.classList.toggle("on", isOn);
           
           if (isOn) {
@@ -312,7 +355,8 @@
         
         //알람 시간을 설정하고 타이머 시작
         function startAlarmTimer() {
-          
+        
+        //알람음 불러오기
       	const alarmSound = new Audio('alarm.mp3');
 
           // 1ms초마다 현재 시간 확인
@@ -325,8 +369,7 @@
 
             // 설정한 시간이 되기 4초 전에 알림
             if (isOn && minutes === alarmTime-1 && seconds === 56) { // 4초 전
-      	   	  //알람 소리 파일
-       		  alarmSound.currentTime = 0;
+       		  alarmSound.currentTime = 0; // 알람 시작 시점 초기화
               alarmSound.play(); // 알람 소리 재생
             }
 
@@ -335,8 +378,10 @@
 
         // 알람 타이머 종료
         function stopAlarmTimer() {
-      	  isOn = false;
-          clearInterval(alarmTimer); // 타이머 중지
+      		isOn = false;
+	      	if (typeof alarmTimer !== 'undefined') {
+	      	  clearInterval(alarmTimer);
+	      	}
         }
 </script>
 </html>

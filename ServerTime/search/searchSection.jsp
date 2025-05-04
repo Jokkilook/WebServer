@@ -26,8 +26,7 @@
 			String url = rs.getString("url");
 			schoolList.add(name);		
 	%>
-		<%-- <div id="listItem" onclick="location.href='./main.jsp?url=<%=url %>'"> --%>
-		<div id="listItem" onclick="selectItem('<%=url %>')">	
+		<div id="listItem" onclick="location.href='./main.jsp?url=<%=url %>'">
 			<%=name %>
 		</div>
 	<%
@@ -50,16 +49,3 @@
 			message = e.getMessage();
 	}   
 %>
-
-<script>
-function selectItem(itemId) {
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", "main.jsp?url=" + encodeURIComponent(itemId), true);
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            window.opener.document.getElementById("serverTime").innerHTML = xhr.responseText;
-        }
-    };
-    xhr.send();
-}
-</script>

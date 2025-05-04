@@ -1,3 +1,7 @@
+:root {
+	--buttonColor: #000;
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -87,7 +91,7 @@ ul,li {
 #speedtest {
     background-color: #fff;
     padding: 20px;
-    height: 70vh;
+    height: 68vh;
     /* border-radius: 12px; */
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
@@ -162,7 +166,7 @@ input[type="text"]:focus {
 button, Button {
     padding: 10px 16px;
     font-weight: bold;
-    background-color: #000000;
+    background-color: var(--buttonColor);
     color: white;
     font-size: 15px;
     border: none;
