@@ -4,8 +4,8 @@
 	{
 		try 
 		{
-			final String interlogFileName = "/usr/local/tomcat/webapps/ROOT/WebServer/ServerTime/Logs/log.txt";
-			final String daylogFileName = "/usr/local/tomcat/webapps/ROOT/WebServer/ServerTime/Logs/"+LocalDate.now()+"_log.txt";
+			final String interlogFileName = "/var/lib/tomcat10/webapps/ROOT/WebServer/ServerTime/Logs/log.txt";
+			final String daylogFileName = "/var/lib/tomcat10/webapps/ROOT/WebServer/ServerTime/Logs/"+LocalDate.now()+"_log.txt";
 			BufferedWriter writer = new BufferedWriter( new FileWriter( interlogFileName, true ) );
 			BufferedWriter dayLogWriter = new BufferedWriter( new FileWriter( interlogFileName, true ) );
 
