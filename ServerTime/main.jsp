@@ -25,7 +25,7 @@
             normalizedUrl = "https://" + detectedUrl;
         } else {
             normalizedUrl = detectedUrl;
-            writeLog(normalizedUrl+" 을 조회했습니다.", request, session);
+            writeLog(normalizedUrl+" 을 조회했습니다.", request, session, application);
         }
     } else {
     	detectedUrl = "";
