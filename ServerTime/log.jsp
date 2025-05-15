@@ -1,8 +1,10 @@
-<%@ page language="java" import="java.io.*, java.time.*" pageEncoding="utf8"%>
+<%@ page language="java" import="java.io.*, java.time.*, jakarta.servlet.*" pageEncoding="utf8"%>
 <%!
-	public void writeLog(String message, HttpServletRequest request, HttpSession session) throws IOException {
-		
+	public void writeLog(String message, HttpServletRequest request, HttpSession session, ServletContext application) throws IOException {
+
 		String logsDir = application.getRealPath("/ServerTime/Logs/");
+		if (!logsDir.endsWith(File.separator)) logsDir += File.separator;
+
 		final String interlogFileName = logsDir + "log.txt";
 		final String daylogFileName = logsDir + LocalDate.now() + "_log.txt";
 
@@ -30,7 +32,7 @@
 
 	if (mes != null && !mes.equals("")) {
 		try {
-			writeLog(mes, request, session);
+			writeLog(mes, request, session, application);
 		} catch (IOException e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));

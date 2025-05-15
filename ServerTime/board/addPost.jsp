@@ -30,7 +30,7 @@
         System.out.println(pstmt.toString());
 		pstmt.executeUpdate();
 		
-		writeLog("게시글을 올렸습니다. [ 내용 : "+ content +" ]", request, session);
+		writeLog("게시글을 올렸습니다. [ 내용 : "+ content +" ]", request, session, application);
 		
 	}catch(SQLException e){
 		System.out.println(e.toString());

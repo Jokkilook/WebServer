@@ -41,7 +41,7 @@
 		con.close();
 		
 		if(search!=""&&search!=null){
-			writeLog("["+search+"] 를 검색했습니다.", request, session);
+			writeLog("["+search+"] 를 검색했습니다.", request, session, application);
 		}
 	} 
 		// 예외 처리
