@@ -2,7 +2,7 @@
 <%!
 	public void writeLog(String message, HttpServletRequest request, HttpSession session, ServletContext application) throws IOException {
 
-		String logsDir = application.getRealPath("/ServerTime/Logs/");
+		String logsDir = application.getRealPath("/WebServer/ServerTime/Logs/");
 		if (!logsDir.endsWith(File.separator)) logsDir += File.separator;
 
 		final String interlogFileName = logsDir + "log.txt";
