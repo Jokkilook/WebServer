@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.net.*, java.io.*, java.util.*" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="./log.jsp"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +25,7 @@
             normalizedUrl = "https://" + detectedUrl;
         } else {
             normalizedUrl = detectedUrl;
+            writeLog(normalizedUrl+" 을 조회했습니다.", request, session);
         }
     } else {
     	detectedUrl = "";
@@ -138,7 +140,7 @@
 </div>
 
 <div id="footer">
-2025 웹서버개발 202111085 유상현 / 202111096 조준환 / 202315081 조성윤
+ⓒ 2025 [ 웹서버개발 202111085 유상현 / 202111096 조준환 / 202315081 조성윤 ] All rights reserved.
 </div>
 
 </body>
@@ -247,6 +249,13 @@
             tabs[0].click();
           });
         
+        function callLogFunction(message) {
+            fetch('log.jsp?mes=' + encodeURIComponent(message))
+              .then(response => response.text())
+              .then(data => {
+              });
+        }        
+        
         const box = document.getElementById('testbox');
         const resultList = document.getElementById('resultlist');
 
@@ -266,6 +275,9 @@
             isWaiting = false;
             isReady = false;
             addResult(reactionTime);
+            
+            callLogFunction("반응 속도 테스트 실시 [ "+reactionTime+"ms ]")
+            
           } else if (!isReady) {
             // 테스트 처음 시작
             box.textContent = '준비하세요...';
@@ -348,8 +360,10 @@
           
           if (isOn) {
               startAlarmTimer();  // 알람 타이머 시작
+              callLogFunction("알람을 켰습니다.");
             } else {
               stopAlarmTimer();   // 알람 타이머 중지
+              callLogFunction("알람을 껐습니다.");
             }
         });
         
@@ -387,5 +401,6 @@
         if(isOn) {
         	startAlarmTimer();
         }
+        
 </script>
 </html>

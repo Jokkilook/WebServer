@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.sql.*, javax.sql.DataSource" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../SQLconstants.jsp" %>
+<%@ include file="../log.jsp"%>
 <%
 	//게시글 추가하는 JSP
 	
@@ -28,6 +29,8 @@
         pstmt.setTimestamp(3, currentTime);
         System.out.println(pstmt.toString());
 		pstmt.executeUpdate();
+		
+		writeLog("게시글을 올렸습니다. [ 내용 : "+ content +" ]", request, session);
 		
 	}catch(SQLException e){
 		System.out.println(e.toString());
