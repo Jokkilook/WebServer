@@ -140,9 +140,9 @@
 </div>
 
 <div id="footer">
+<button type="button" onclick="location.href='../ServerTimeLegacy/main.jsp'">구버전으로 이동</button>
 ⓒ 2025 [ 웹서버개발 202111085 유상현 / 202111096 조준환 / 202315081 조성윤 ] All rights reserved.
 </div>
-
 </body>
 <script>
         let baseServerTime = <%= serverTimeMillis %>; // 서버 기준 시간 (ms)
