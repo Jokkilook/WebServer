@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.sql.*, javax.sql.DataSource, java.util.*" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../SQLconstants.jsp" %>
+<%@ include file="../log.jsp"%>
 <div id="search">
 
 <%
@@ -28,7 +29,7 @@
 			String url = rs.getString("url");
 			schoolList.add(name);		
 	%>
-		<div id="listItem" onclick="location.href='<%=contextPath %>/ServerTimeLegacy/main.jsp?url=<%=url %>'">
+		<div id="listItem" onclick="location.href='./main.jsp?url=<%=url %>'">
 			<%=name %>
 		</div>
 	<%
@@ -40,6 +41,10 @@
 		// MySQL 드라이버 연결 해제
 		pstmt.close();
 		con.close();
+		
+		if(search!=""&&search!=null){
+			writeLog("["+search+"] 를 검색했습니다.", request, session, application);
+		}
 	} 
 		// 예외 처리
 	catch(SQLException e)

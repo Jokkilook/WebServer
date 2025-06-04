@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>서버 시간 디스플레이 사이트</title>
 </head>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/ServerTimeLegacy/style.css">
+<link rel="stylesheet" href="./style.css">
 <%
 	request.setCharacterEncoding("UTF-8");
 	String contextPath = request.getContextPath();
