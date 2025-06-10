@@ -1,10 +1,10 @@
 <%
 	//MySQL 기본 설정
 	// MySQL ID : MySQL 설치시 아이디 ex) root, test, ...
-	final String mySQL_id = ""; 	
+	final String mySQL_id = "joe"; 	
 
 	// MySQL Password	
-	final String mySQL_password = "";
+	final String mySQL_password = "Ksa1041713**";
 	
 	// MySQL Database
 	final String mySQL_database = "jdbc:mysql://localhost:3306/GameDB"; 

@@ -1,0 +1,2 @@
+
+| Time |: 2025-06-04 07:47:07.284304674	| IP |: 124.56.13.190	| SessionID |: CE3EDF95E5AC67C0AAB549D8DD8BC80F	| URI |: /WebServer/ServerTimeLegacy/main.jsp	| Previous |: http://52.63.87.207:8080/WebServer/ServerTimeLegacy/main.jsp	| Browser |: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36	| Message |: https://www.kangwon.ac.kr/ 을 조회했습니다.
